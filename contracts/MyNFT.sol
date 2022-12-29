@@ -11,7 +11,28 @@ contract MyNFT is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    constructor() ERC721("MyNFT", "NFT") {}
+    uint256 public mintPrice = 0.01 ether;
+
+    uint256 public totalSupply;
+
+    uint256 public maxSupply;
+
+    bool public isMintEnable;
+
+    mapping(address => uint256) public mintedwallets;
+ 
+    constructor() ERC721("MyNFT", "NFT") {
+
+    }
+/*
+    function toggleIsMintEnabled() external onlyOwner{
+        isMintEnable = !isMintEnable;
+    }
+
+    function setMaxSupply(uint256 _maxSupply) external onlyOwner{
+        maxSupply = _maxSupply;
+    }
+    */
 
     function mintNFT(address recipient, string memory tokenURI)
         public onlyOwner
